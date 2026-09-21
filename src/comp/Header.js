@@ -16,13 +16,13 @@ export default function Header() {
             </NavLink >
             <ul className="sub-ul">
               <li>
-                <NavLink to="www">Full Course</NavLink>
+                <NavLink to="/html">Full Course</NavLink>
               </li>
               <li>
-                <NavLink to="www">Crash Course</NavLink>
+                <NavLink to="/html">Crash Course</NavLink>
               </li>
               <li>
-                <NavLink to="www">learn in 1h</NavLink>
+                <NavLink to="/html">learn in 1h</NavLink>
               </li>
             </ul>
           </li>
@@ -33,22 +33,22 @@ export default function Header() {
             </NavLink >
             <ul className="sub-ul">
               <li>
-                <NavLink to="www">Full Course</NavLink>
+                <NavLink to="/css">Full Course</NavLink>
               </li>
               <li>
-                <NavLink to="www">CSS Examples</NavLink>
+                <NavLink to="/css">CSS Examples</NavLink>
               </li>
               <li className="mini-projects">
-                <NavLink to="www">mini projects  + </NavLink>
+                <NavLink to="/css">mini projects  + </NavLink>
                 <ul className="sub-sub-ul">
                   <li>
-                    <NavLink to="www">project 1</NavLink>
+                    <NavLink to="/css">project 1</NavLink>
                   </li>
                   <li>
-                    <NavLink to="www">project 2</NavLink>
+                    <NavLink to="/css">project 2</NavLink>
                   </li>
                   <li>
-                    <NavLink to="www">project 3</NavLink>
+                    <NavLink to="/css">project 3</NavLink>
                   </li>
                 </ul>
               </li>
@@ -61,7 +61,7 @@ export default function Header() {
             </NavLink >
             <ul className="sub-ul sub-of-js">
               <li>
-                <NavLink to="www">coming soon🔥</NavLink>
+                <NavLink to="/javascript">coming soon🔥</NavLink>
               </li>
             </ul>
           </li>
@@ -81,13 +81,13 @@ export default function Header() {
             <input id="html" type="checkbox" />
             <ul className="sub-div">
               <li>
-                <NavLink to="www">Full Course</NavLink>
+                <NavLink to="/html">Full Course</NavLink>
               </li>
               <li>
-                <NavLink to="www">Crash Course</NavLink>
+                <NavLink to="/html">Crash Course</NavLink>
               </li>
               <li>
-                <NavLink to="www">learn in 1h</NavLink>
+                <NavLink to="/html">learn in 1h</NavLink>
               </li>
             </ul>
           </div>
@@ -98,10 +98,10 @@ export default function Header() {
             <input id="css" type="checkbox" />
             <ul className="sub-div">
               <li>
-                <NavLink to="www">Full Course</NavLink>
+                <NavLink to="/css">Full Course</NavLink>
               </li>
               <li>
-                <NavLink to="www">CSS Examples</NavLink>
+                <NavLink to="/css">CSS Examples</NavLink>
               </li>
               <li>
                 <label className="mini-projects" htmlFor="mini">
@@ -110,13 +110,13 @@ export default function Header() {
                 <input id="mini" type="checkbox" />
                 <ul className="sub-sub-div">
                   <li>
-                    <NavLink to="www">project 1</NavLink>
+                    <NavLink to="/css">project 1</NavLink>
                   </li>
                   <li>
-                    <NavLink to="www">project 2</NavLink>
+                    <NavLink to="/css">project 2</NavLink>
                   </li>
                   <li>
-                    <NavLink to="www">project 3</NavLink>
+                    <NavLink to="/css">project 3</NavLink>
                   </li>
                 </ul>
               </li>
@@ -129,7 +129,7 @@ export default function Header() {
             <input id="js" type="checkbox" />
             <ul className="sub-div">
               <li>
-                < NavLink to="www">coming soon🔥</NavLink>
+                < NavLink to="/javascript">coming soon🔥</NavLink>
               </li>
             </ul>
           </div>
