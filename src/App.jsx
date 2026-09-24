@@ -9,11 +9,41 @@ function App() {
 
   return (
     <div className={`App ${color}`}>
+      <button
+        style={{ marginBottom: 60 }}
+        onClick={() => setColor(color == "" ? "dark" : "")}
+      >
+        Tgggle Theme
+      </button>.
+      <input type="checkbox" id="toggle_checkbox"  onChange={() => {
+          setColor(color == "" ? "dark" : "");
+        }}/>
+      <label
+        htmlFor="toggle_checkbox"
+      >
+        <div id="star">
+          <div className="star" id="star-1">
+            ★
+          </div>
+          <div className="star" id="star-2">
+            ★
+          </div>
+        </div>
+        <div id="moon" />
+      </label>
       <div className="th">
-        <button className="light"  style={{ marginRight: 26 }} onClick={() => setColor("light")}>
+        <button
+          className="light"
+          style={{ marginRight: 26 }}
+          onClick={() => setColor("light")}
+        >
           light
         </button>
-        <button className="dark" style={{ marginRight: 26 }}  onClick={() => setColor("dark")}>
+        <button
+          className="dark"
+          style={{ marginRight: 26 }}
+          onClick={() => setColor("dark")}
+        >
           dark
         </button>
         <button className="gray" onClick={() => setColor("gray")}>
