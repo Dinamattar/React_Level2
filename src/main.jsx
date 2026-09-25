@@ -7,7 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Page2 from './Page2.jsx'
-
+import {DataProvider} from "./context/DataContext.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,6 +21,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <DataProvider>
+      <RouterProvider router={router} />
+    </DataProvider>
+    
   </StrictMode>,
 )
