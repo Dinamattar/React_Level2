@@ -1,13 +1,20 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import './Header.css'
+import { useContext } from "react";
+import DataContext from "../context/DataContext";
 
 export default function Header() {
+  const { theme, changeTheme } = useContext(DataContext);
+
   return (
-    <div>
-      <header className="hide-when-mobile">
+    <div className='myheader'>
+      <header className="hide-when-mobile dina">
         <NavLink to="/">    <h1>React Course</h1>
         </NavLink>
+        <button className="th" onClick={() => changeTheme(theme === "ligth" ? "dark" : "ligth")}>
+          {theme}
+        </button>
         <ul className="flex">
           <li className="main-list">
             <NavLink className="main-link" to="/html">

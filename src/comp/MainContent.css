@@ -9,3 +9,12 @@ main {
   align-items: center;
   text-align: center;
 }
+
+/* theme */
+.dark {
+  background-color: black;
+}
+.dark main {
+  background-color: black;
+  color: rgb(255, 254, 254);
+}

@@ -1,16 +1,41 @@
-
-@media(max-width: 800px){
+@media (maxwidth: 800px) {
   /* header{
-    background-color: teal;
+    backgroundcolor: teal;
   } */
-.show-when-mobile {
-  display: block;
+  .showwhenmobile {
+    display: block;
+  }
+
+  .hidewhenmobile {
+    display: none;
+  }
 }
 
-.hide-when-mobile {
-  display: none;
+.myheader .dina {
+  background-color: teal;
+  display: flex;
+  justify-content: spacebetween;
+  align-items: center;
+  padding: 0 20px;
+  height: 70px;
 }
-
+button.th {
+  background-color: #679b9b;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  height: 45px;
 }
-
-
+button.th:hover {
+  background-color: #009999;
+  transform: scale(1.05);
+}
+button.th:active {
+  background-color: #007070;
+  transform: scale(0.95);
+}
