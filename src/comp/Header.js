@@ -3,8 +3,14 @@ import { NavLink } from 'react-router-dom'
 import './Header.css'
 import { useContext } from "react";
 import DataContext from "../context/DataContext";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from "../firebase/config";
+import { getAuth, signOut } from "firebase/auth";
 
-export default function Header() {
+
+const Header = () => {
+  const [user, loading, error] = useAuthState(auth);
+
   const { theme, changeTheme } = useContext(DataContext);
 
   return (
@@ -16,7 +22,8 @@ export default function Header() {
           {theme}
         </button>
         <ul className="flex">
-          <li className="main-list">
+
+          {user && <li className="main-list">
             <NavLink className="main-link" to="/html">
               {" "}
               HTML{" "}
@@ -32,8 +39,9 @@ export default function Header() {
                 <NavLink to="/html">learn in 1h</NavLink>
               </li>
             </ul>
-          </li>
-          <li className="main-list">
+          </li>}
+
+          {user && <li className="main-list">
             <NavLink className="main-link" to="/css">
               {" "}
               CSS{" "}
@@ -60,8 +68,9 @@ export default function Header() {
                 </ul>
               </li>
             </ul>
-          </li>
-          <li className="main-list">
+          </li>}
+
+          {user && <li className="main-list">
             <NavLink className="main-link" to="/javascript">
               {" "}
               JavaScript{" "}
@@ -71,7 +80,42 @@ export default function Header() {
                 <NavLink to="/javascript">coming soon🔥</NavLink>
               </li>
             </ul>
-          </li>
+          </li>}
+
+
+          {!user && <li className="main-list">
+            <NavLink className="main-link" to="/Signup">
+              Sign Up
+            </NavLink >
+
+
+          </li>}
+
+          {!user && <li className="main-list">
+            <NavLink className="main-link" to="/Signin">
+              Sign In
+            </NavLink >
+
+
+          </li>}
+          {user && <li className="main-list" onClick={() => {
+            signOut(auth).then(() => {
+              // Sign-out successful.
+              console.log("sign out")
+            }).catch((error) => {
+              // An error happened.
+              console.log("dont sign out")
+            });
+          }}>
+            <NavLink className="main-link" to="">
+              Sign Out
+            </NavLink >
+
+
+          </li>}
+
+
+
         </ul>
       </header>
       <header className="show-when-mobile">
@@ -143,5 +187,7 @@ export default function Header() {
         </div>
       </header>
     </div>
-  )
-}
+  );
+};
+export default Header;
+

@@ -11,3 +11,44 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+form{
+display:flex;
+flex-direction: column;
+}
+
+input{
+  margin-bottom: 18px;
+  padding:6px 6px;
+  border: 1px solid #607d8b;
+  border-radius:5px ;
+  color:#000;
+  font-size: 16px;
+  
+}
+form button{
+  padding:8px 12px;
+  background-color: teal;
+  border:none;
+font-size: 16px;
+}
+form button:active{
+  scale: 0.95;
+  /* background-color: #00c6c6; */
+  border-radius: 0;
+}
+.account{
+  font-size: 16px;
+  font-weight: 100;
+  margin-top: 12px;
+}
+.account a{
+  text-decoration: underline;
+  font-size: 600;
+  color:#00c6c6;
+  font-size:18px;
+}
+.ligth form p{
+  color:#000;
+}
+
