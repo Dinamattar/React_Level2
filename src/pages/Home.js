@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   const [user, loading, error] = useAuthState(auth);
+  console.log(user)
   return (
     <div>
       <Header />

@@ -3,17 +3,19 @@ import Header from "../comp/Header";
 import Footer from "../comp/Footer";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import {createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { useState } from "react";
-import {useNavigate} from "react-router";
+import { useNavigate } from "react-router";
+import { getAuth, updateProfile } from "firebase/auth";
 
 const Signup = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-    const [hasError, setHasError] = useState(false);
-    const [firebaseError, setFirebaseError] = useState("");
+  const [hasError, setHasError] = useState(false);
+  const [firebaseError, setFirebaseError] = useState("");
+  const [userName, setUserName] = useState("");
   return (
     <div>
       <Helmet>
@@ -25,20 +27,29 @@ const Signup = () => {
           <p>
             Create a new account <span>🧡</span>
           </p>
+
           <input
             onChange={(eo) => {
               setEmail(eo.target.value);
             }}
             required
-            placeholder="E-mail"
+            placeholder="E-mail:"
             type="email"
+          />
+          <input
+            onChange={(eo) => {
+              setUserName(eo.target.value);
+            }}
+            required
+            placeholder="User Name:"
+            type="text"
           />
           <input
             onChange={(eo) => {
               setPassword(eo.target.value);
             }}
             required
-            placeholder="Password"
+            placeholder="Password:"
             type="password"
           />
           <button
@@ -49,15 +60,20 @@ const Signup = () => {
                   // Signed up
                   const user = userCredential.user;
                   // ...
-                  navigate("/Signin");
-                  console.log("doneeeeeee");
+                  updateProfile(auth.currentUser, {
+                    displayName: userName,
+                  })
+                    .then(() => {
+                      navigate("/");
+                    })
+                    .catch((error) => {});
                 })
                 .catch((error) => {
                   const errorCode = error.code;
                   const errorMessage = error.message;
                   // ..
                   console.log(errorMessage);
-                   setHasError(true);
+                  setHasError(true);
                   // setFirebaseError(errorCode);
                   switch (errorCode) {
                     case "auth/invalid-email":
@@ -69,11 +85,13 @@ const Signup = () => {
                     case "auth/user-not-found":
                       setFirebaseError("User not found");
                       break;
-                       case "auth/invalid-credential":
+                    case "auth/invalid-credential":
                       setFirebaseError("Invalid email or password");
                       break;
-                      case "auth/too-many-requests":
-                      setFirebaseError("Too many requests. Please try again later");
+                    case "auth/too-many-requests":
+                      setFirebaseError(
+                        "Too many requests. Please try again later",
+                      );
                       break;
                     default:
                       setFirebaseError("please check your email and password");
@@ -86,8 +104,7 @@ const Signup = () => {
           <p className="account">
             Already have an account <Link to="/Signin">Sign in</Link>
           </p>
-                    {hasError && <p>{firebaseError}</p>}
-
+          {hasError && <p>{firebaseError}</p>}
         </form>
       </main>
       <Footer />

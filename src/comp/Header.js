@@ -23,21 +23,11 @@ const Header = () => {
         <ul className="flex">
 
           {user && <li className="main-list">
-            <NavLink className="main-link" to="/html">
-              {" "}
-              HTML{" "}
+            <NavLink className="main-link" to="/About">
+             
+              About
             </NavLink >
-            <ul className="sub-ul">
-              <li>
-                <NavLink to="/html">Full Course</NavLink>
-              </li>
-              <li>
-                <NavLink to="/html">Crash Course</NavLink>
-              </li>
-              <li>
-                <NavLink to="/html">learn in 1h</NavLink>
-              </li>
-            </ul>
+          
           </li>}
 
           {user && <li className="main-list">
