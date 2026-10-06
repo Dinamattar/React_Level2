@@ -7,7 +7,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from "../firebase/config";
 import { getAuth, signOut } from "firebase/auth";
 
-
 const Header = () => {
   const [user, loading, error] = useAuthState(auth);
 

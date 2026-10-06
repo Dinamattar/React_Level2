@@ -42,13 +42,19 @@ form button:active{
   font-weight: 100;
   margin-top: 12px;
 }
-.account a{
-  text-decoration: underline;
+.account a,.please a{
+  /* text-decoration: underline; */
+  border-bottom: 4px solid;
   font-size: 600;
   color:#00c6c6;
   font-size:18px;
 }
 .ligth form p{
   color:#000;
+}
+
+.ligth .please{
+  color:#111;
+
 }
 

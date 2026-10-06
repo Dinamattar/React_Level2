@@ -6,9 +6,14 @@ import { Link } from "react-router-dom";
 import {createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { useState } from "react";
+import {useNavigate} from "react-router";
+
 const Signup = () => {
+    const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+    const [hasError, setHasError] = useState(false);
+    const [firebaseError, setFirebaseError] = useState("");
   return (
     <div>
       <Helmet>
@@ -44,6 +49,7 @@ const Signup = () => {
                   // Signed up
                   const user = userCredential.user;
                   // ...
+                  navigate("/Signin");
                   console.log("doneeeeeee");
                 })
                 .catch((error) => {
@@ -51,6 +57,27 @@ const Signup = () => {
                   const errorMessage = error.message;
                   // ..
                   console.log(errorMessage);
+                   setHasError(true);
+                  // setFirebaseError(errorCode);
+                  switch (errorCode) {
+                    case "auth/invalid-email":
+                      setFirebaseError("Invalid email address");
+                      break;
+                    case "auth/missing-password":
+                      setFirebaseError("Missing password");
+                      break;
+                    case "auth/user-not-found":
+                      setFirebaseError("User not found");
+                      break;
+                       case "auth/invalid-credential":
+                      setFirebaseError("Invalid email or password");
+                      break;
+                      case "auth/too-many-requests":
+                      setFirebaseError("Too many requests. Please try again later");
+                      break;
+                    default:
+                      setFirebaseError("please check your email and password");
+                  }
                 });
             }}
           >
@@ -59,6 +86,8 @@ const Signup = () => {
           <p className="account">
             Already have an account <Link to="/Signin">Sign in</Link>
           </p>
+                    {hasError && <p>{firebaseError}</p>}
+
         </form>
       </main>
       <Footer />
