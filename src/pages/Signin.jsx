@@ -7,6 +7,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { useState } from "react";
 import {useNavigate} from "react-router";
+import "../pages/signin.css";
 
 const Signin = () => {
     const navigate = useNavigate();
@@ -14,6 +15,9 @@ const Signin = () => {
   const [password, setPassword] = useState("");
   const [hasError, setHasError] = useState(false);
   const [firebaseError, setFirebaseError] = useState("");
+    const [showSendEmail, setShowSendEmail] = useState(false);
+    const [showFrom, setShowFrom] = useState("");
+
   return (
     
     <div>
@@ -22,9 +26,22 @@ const Signin = () => {
       </Helmet>
       <Header />
       <main>
+        <form className={`forget-password ${showFrom}`}>
+          <div  onClick={() => {
+            setShowFrom("")
+          }
+          } className="close">X</div>
+          <input required placeholder="Email" type="email" />
+          <button onClick={(eo) => {
+            eo.preventDefault();
+            setShowSendEmail(true);
+          }}>Reset Email</button>
+         {showSendEmail && <p className="check-email"> Please check your email to reset your password </p>} 
+        </form>
+        
         <form>
           <p>
-            Sign in <span>🧡</span>
+            Sign in 
           </p>
           <input
             onChange={(eo) => {
@@ -84,8 +101,15 @@ const Signin = () => {
           <p className="account">
             Do not have account <Link to="/Signup">Sign up</Link>
           </p>
+          <p onClick= {() => {
+            setShowFrom("show-forget-pass")
+            
+          }
+          } className="Reset-Password">Reset Password</p>
           {hasError && <p>{firebaseError}</p>}
+
         </form>
+
       </main>
       <Footer />
     </div>

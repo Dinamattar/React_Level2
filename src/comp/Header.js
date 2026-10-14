@@ -30,45 +30,14 @@ const Header = () => {
           
           </li>}
 
-          {user && <li className="main-list">
-            <NavLink className="main-link" to="/css">
-              {" "}
-              CSS{" "}
-            </NavLink >
-            <ul className="sub-ul">
-              <li>
-                <NavLink to="/css">Full Course</NavLink>
-              </li>
-              <li>
-                <NavLink to="/css">CSS Examples</NavLink>
-              </li>
-              <li className="mini-projects">
-                <NavLink to="/css">mini projects  + </NavLink>
-                <ul className="sub-sub-ul">
-                  <li>
-                    <NavLink to="/css">project 1</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/css">project 2</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/css">project 3</NavLink>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>}
+         
 
           {user && <li className="main-list">
-            <NavLink className="main-link" to="/javascript">
-              {" "}
-              JavaScript{" "}
+            <NavLink className="main-link" to="/profile">
+             
+             Profile
             </NavLink >
-            <ul className="sub-ul sub-of-js">
-              <li>
-                <NavLink to="/javascript">coming soon🔥</NavLink>
-              </li>
-            </ul>
+           
           </li>}
 
 
@@ -96,7 +65,7 @@ const Header = () => {
               console.log("dont sign out")
             });
           }}>
-            <NavLink className="main-link" to="">
+            <NavLink className="main-link" to="/Signin">
               Sign Out
             </NavLink >
 

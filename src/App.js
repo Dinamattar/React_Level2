@@ -1,12 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from './pages/About';
-import Css from './pages/Css';
 import Signin from "./pages/Signin"
 import Signup from "./pages/Signup"
-import Javascript from './pages/JavaScript';
 import { useContext } from "react";
 import DataContext from "./context/DataContext";
+import Profile from "./pages/Profile";
 function App() {
   const { theme } = useContext(DataContext);
   return (
@@ -17,8 +16,7 @@ function App() {
         <Route path="/Signin" element={<Signin />} />
 
         <Route path="/about" element={<About />} />
-        <Route path="/css" element={<Css />} />
-        <Route path="/javascript" element={<Javascript />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </div>
   );
