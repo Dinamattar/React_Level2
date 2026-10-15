@@ -21,17 +21,65 @@ const Signup = () => {
   const [user, loading, error] = useAuthState(auth);
 
   useEffect(() => {
-    if(user){
-     if(user.emailVerified){
-      navigate("/");  
-   }}}); 
-  //loading
-  // not signed in
-  // signed in without email verification
-  // signed in with email verification
+    if (user) {
+      if (user.emailVerified) {
+        navigate("/");
+      }
+    }
+  });
+
+  const signUpBTN = (eo) => {
+    eo.preventDefault();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        console.log(user);
+
+        // ...
+        sendEmailVerification(auth.currentUser).then(() => {
+          // Email verification sent!
+          // ...
+        });
+        updateProfile(auth.currentUser, {
+          displayName: userName,
+        })
+          .then(() => {
+            navigate("/");
+          })
+          .catch((error) => {});
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        console.log(errorMessage);
+        setHasError(true);
+        // setFirebaseError(errorCode);
+        switch (errorCode) {
+          case "auth/invalid-email":
+            setFirebaseError("Invalid email address");
+            break;
+          case "auth/missing-password":
+            setFirebaseError("Missing password");
+            break;
+          case "auth/user-not-found":
+            setFirebaseError("User not found");
+            break;
+          case "auth/invalid-credential":
+            setFirebaseError("Invalid email or password");
+            break;
+          case "auth/too-many-requests":
+            setFirebaseError("Too many requests. Please try again later");
+            break;
+          default:
+            setFirebaseError("please check your email and password");
+        }
+      });
+  };
 
   if (!user) {
-    return(
+    return (
       <div>
         <Helmet>
           <title>Sign up page</title>
@@ -69,55 +117,7 @@ const Signup = () => {
             />
             <button
               onClick={(eo) => {
-                eo.preventDefault();
-                createUserWithEmailAndPassword(auth, email, password)
-                  .then((userCredential) => {
-                    // Signed up
-                    const user = userCredential.user;
-                    // ...
-                    sendEmailVerification(auth.currentUser).then(() => {
-                      // Email verification sent!
-                      // ...
-                    });
-                    updateProfile(auth.currentUser, {
-                      displayName: userName,
-                    })
-                      .then(() => {
-                        navigate("/");
-                      })
-                      .catch((error) => {});
-                  })
-                  .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    // ..
-                    console.log(errorMessage);
-                    setHasError(true);
-                    // setFirebaseError(errorCode);
-                    switch (errorCode) {
-                      case "auth/invalid-email":
-                        setFirebaseError("Invalid email address");
-                        break;
-                      case "auth/missing-password":
-                        setFirebaseError("Missing password");
-                        break;
-                      case "auth/user-not-found":
-                        setFirebaseError("User not found");
-                        break;
-                      case "auth/invalid-credential":
-                        setFirebaseError("Invalid email or password");
-                        break;
-                      case "auth/too-many-requests":
-                        setFirebaseError(
-                          "Too many requests. Please try again later",
-                        );
-                        break;
-                      default:
-                        setFirebaseError(
-                          "please check your email and password",
-                        );
-                    }
-                  });
+                signUpBTN(eo);
               }}
             >
               Sign up
@@ -133,9 +133,8 @@ const Signup = () => {
     );
   }
 
- 
   if (loading) {
-    return(
+    return (
       <div>
         <Header />
         <main>
@@ -147,7 +146,7 @@ const Signup = () => {
     );
   }
 
-    if (error) {
+  if (error) {
     return (
       <div>
         <p>Error: {error}</p>
@@ -155,27 +154,21 @@ const Signup = () => {
     );
   }
 
-   if(user){
-     if(!user.emailVerified){
-    return(
-      <div>
-        <Header />
-        <main>
-          {" "}
-          <p className="load">we send you an  email to verify your account</p>
-          <button className="delete">Resend Verification Email</button>
-        </main>
-        <Footer />
-      </div>
-    );
+  if (user) {
+    if (!user.emailVerified) {
+      return (
+        <div>
+          <Header />
+          <main>
+            {" "}
+            <p className="load">we send you an email to verify your account</p>
+            <button className="delete">Resend Verification Email</button>
+          </main>
+          <Footer />
+        </div>
+      );
+    }
   }
-  
-  }
-
 };
-
-
-
-
 
 export default Signup;

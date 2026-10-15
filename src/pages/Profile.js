@@ -7,6 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from "../firebase/config";
 import { useNavigate } from "react-router";
 import Moment from 'react-moment';
+import { deleteUser} from "firebase/auth";
 export default function Profile() {
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
@@ -20,6 +21,18 @@ export default function Profile() {
 
     }
   },);
+
+  const deleteAccount = () => {
+    deleteUser(user).then(() => {
+              console.log("user delete")
+
+            }).catch((error) => {
+              console.log(error.message)
+              
+            }
+            )
+  }
+  
 
   if (loading) {
     return (
@@ -51,7 +64,10 @@ export default function Profile() {
 
           <h6 className='profile-data'>Account Created : <Moment className='profile-data' fromNow date={user.metadata.creationTime} /></h6>
 
-          <button className='delete'>Delete Account</button>
+          <button onClick={() => {
+            deleteAccount();
+          }
+          } className='delete'>Delete Account</button>
           {/* <Moment fromnow date={user.metadata.lastSignInTime}/> */}
         </main>
 

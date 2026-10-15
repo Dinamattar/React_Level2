@@ -12,6 +12,15 @@ export default function Home() {
   const [user, loading, error] = useAuthState(auth);
   console.log(user)
 
+  const sendEmail = (params) => {
+    sendEmailVerification(auth.currentUser)
+      .then(() => {
+        // Email verification sent!
+        // ...
+        console.log("we send you an  email to verify your account")
+      });
+  }
+
   if (loading) {
     return (
       <div>
@@ -24,7 +33,7 @@ export default function Home() {
       </div>
     );
   }
-    if (error) {
+  if (error) {
     return (
       <div>
         <p>Error: {error}</p>
@@ -32,7 +41,7 @@ export default function Home() {
     );
   }
   if (user) {
-    if(user.emailVerified){
+    if (user.emailVerified) {
       return (
         <div>
           <Helmet>
@@ -40,15 +49,15 @@ export default function Home() {
           </Helmet>
           <Header />
           <main>
-          <p className='profile-data'> Welcome : {user.displayName}  <span>🧡</span></p> 
-          
+            <p className='profile-data'> Welcome : {user.displayName}  <span>🧡</span></p>
+
           </main>
           <Footer />
         </div>
       );
 
     }
-    
+
     if (!user.emailVerified) {
       return (
         <div>
@@ -57,15 +66,10 @@ export default function Home() {
           </Helmet>
           <Header />
           <main>
-           <p> Welcome : {user.displayName}  <span>🧡</span></p>
+            <p className='profile-data'> Welcome : {user.displayName}  <span>🧡</span></p>
             <p className='profile-data'> Please verify your email to continue</p>
             <button className="delete" onClick={() => {
-              sendEmailVerification(auth.currentUser)
-  .then(() => {
-    // Email verification sent!
-    // ...
-    console.log("we send you an  email to verify your account")
-  });
+              sendEmail();
             }}>Send Email</button>
 
           </main>

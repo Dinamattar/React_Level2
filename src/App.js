@@ -6,6 +6,8 @@ import Signup from "./pages/Signup"
 import { useContext } from "react";
 import DataContext from "./context/DataContext";
 import Profile from "./pages/Profile";
+import Error404 from "./pages/error404";
+
 function App() {
   const { theme } = useContext(DataContext);
   return (
@@ -17,6 +19,8 @@ function App() {
 
         <Route path="/about" element={<About />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="*" element={<Error404 />} />
+
       </Routes>
     </div>
   );

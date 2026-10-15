@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from "../firebase/config";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
 
 export default function About() {
   const [user, loading, error] = useAuthState(auth);
@@ -52,7 +51,7 @@ export default function About() {
           </Helmet>
           <Header />
           <main>
-            <p>Welcome : {user.displayName} <span>🧡</span></p>
+            <p className='profile-data'>Welcome : {user.displayName} <span>🧡</span></p>
           </main>
           <Footer />
         </div>

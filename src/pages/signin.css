@@ -15,6 +15,7 @@
   scale: 0;
   /* transform: translateY(-100vh); */
     transition: 1s;
+    border: 1.5px solid #111;
 
 }
 
